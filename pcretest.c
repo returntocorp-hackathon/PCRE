@@ -3706,7 +3706,10 @@ while (!done)
   for callouts. */
 
   *pp++ = 0;
-  strcpy((char *)pbuffer, (char *)p);
+  size_t psize = strlen((char *)p);
+  strncpy((char *)pbuffer, (char *)p, psize);
+  //strcpy((char *)pbuffer, (char *)p);
+  /*strcpy behavior is unpredictable, use strncpy instead */
 
   /* Look for modifiers and options after the final delimiter. */
 
